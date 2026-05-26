@@ -5,14 +5,14 @@ namespace App\Filament\Pages;
 use App\Models\Invoice;
 use BackedEnum;
 use Filament\Actions\Action;
-use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Contracts\Support\Htmlable;
 use stdClass;
 
@@ -43,7 +43,7 @@ class Debtors extends Page implements HasTable
         return $table
             ->query($debtors)
             ->columns([
-                Tables\Columns\TextColumn::make('#')->state(
+                TextColumn::make('#')->state(
                     static function (HasTable $livewire, stdClass $rowLoop): string {
                         return (string) (
                             $rowLoop->iteration + ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
@@ -51,24 +51,24 @@ class Debtors extends Page implements HasTable
                     }
                 ),
 
-                Tables\Columns\TextColumn::make('customer')
+                TextColumn::make('customer')
                     ->label('Cliente')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('amount')
+                TextColumn::make('amount')
                     ->label('Monto')
                     ->formatStateUsing(function ($state, $record) {
                         return number_format($state - $record->paid, 2);
                     })
                     ->sortable(),
                 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Fecha de registro')
                     ->datetime('d/m/Y h:i A')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->label('Fecha de último pago')
                     ->datetime('d/m/Y h:i A')
                     ->sortable(),
@@ -81,7 +81,7 @@ class Debtors extends Page implements HasTable
                     ->icon('heroicon-o-banknotes')
                     ->modalButton('Pagar')
                     ->schema([
-                        Forms\Components\TextInput::make('amount')
+                        TextInput::make('amount')
                             ->label('Monto')
                             ->numeric()
                             ->default(function ($record) {

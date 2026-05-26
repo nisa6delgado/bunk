@@ -10,7 +10,7 @@ use Filament\Pages\Page;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use stdClass;
@@ -67,7 +67,7 @@ class History extends Page implements HasTable
                     }),
             ])
             ->columns([
-                Tables\Columns\TextColumn::make('#')->state(
+                TextColumn::make('#')->state(
                     static function (HasTable $livewire, stdClass $rowLoop): string {
                         return (string) (
                             $rowLoop->iteration + ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
@@ -75,12 +75,12 @@ class History extends Page implements HasTable
                     }
                 ),
 
-                Tables\Columns\TextColumn::make('customer')
+                TextColumn::make('customer')
                     ->label('Cliente')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('amount')
+                TextColumn::make('amount')
                     ->label('Monto')
                     ->formatStateUsing(function ($state, $record) {
                         $index = array_search($this->product->id, array_column($record->products, 'product'));
@@ -88,7 +88,7 @@ class History extends Page implements HasTable
                     })
                     ->sortable(),
                 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Fecha y hora')
                     ->datetime('d/m/Y h:i A')
                     ->sortable(),

@@ -9,7 +9,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 
 class InvoicesTable
@@ -18,22 +18,22 @@ class InvoicesTable
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
+                TextColumn::make('id')
                     ->label('ID'),
 
-                Tables\Columns\TextColumn::make('amount')
+                TextColumn::make('amount')
                     ->label('Monto')
                     ->formatStateUsing(function ($state) {
                         return number_format($state, 2);
                     }),
 
-                Tables\Columns\TextColumn::make('paid')
+                TextColumn::make('paid')
                     ->label('Pagado')
                     ->formatStateUsing(function ($state) {
                         return number_format($state, 2);
                     }),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Fecha y hora')
                     ->datetime('d/m/Y h:i A'),
             ])
