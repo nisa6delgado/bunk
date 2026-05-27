@@ -9,12 +9,12 @@ use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
-use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +26,7 @@ class ProductsTable
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('#')->state(
+                TextColumn::make('#')->state(
                     static function (HasTable $livewire, stdClass $rowLoop): string {
                         return (string) (
                             $rowLoop->iteration + ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
@@ -34,7 +34,7 @@ class ProductsTable
                     }
                 ),
                 
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->label('Nombre')
                     ->html()
                     ->formatStateUsing(function (string $state, $record) {
@@ -45,19 +45,19 @@ class ProductsTable
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('category.name')
+                TextColumn::make('category.name')
                     ->label('Categoría')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('selling_price')
+                TextColumn::make('selling_price')
                     ->label('Precio')
                     ->formatStateUsing(function ($state) {
                         return number_format($state, 2);
                     })
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('quantity')
+                TextColumn::make('quantity')
                     ->label('Cantidad')
                     ->sortable(),
             ])
@@ -75,7 +75,7 @@ class ProductsTable
                     ->button()
                     ->modalWidth('xs')
                     ->schema([
-                        Forms\Components\TextInput::make('quantity')
+                        TextInput::make('quantity')
                             ->label('Cantidad')
                             ->numeric()
                             ->default(1)
@@ -111,7 +111,7 @@ class ProductsTable
                     ->label('Agregar Cantidad')
                     ->modalWidth('xs')
                     ->schema([
-                        Forms\Components\TextInput::make('quantity')
+                        TextInput::make('quantity')
                             ->label('Cantidad')
                             ->numeric()
                             ->minValue(1)
