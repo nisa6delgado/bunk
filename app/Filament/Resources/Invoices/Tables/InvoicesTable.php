@@ -55,6 +55,7 @@ class InvoicesTable
                             );
                     }),
             ])
+            ->recordUrl(null)
             ->recordActions([
                 Action::make('view')
                     ->label('Ver factura')

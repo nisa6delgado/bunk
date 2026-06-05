@@ -69,7 +69,7 @@ class ListProducts extends ListRecords
             $quantity = $product->quantity - $item['quantity'];
             $product->update(['quantity' => $quantity]);
 
-            $amount += $product->selling_price;
+            $amount += $product->selling_price * $item['quantity'];
         }
         
         $paid = $this->paid ?? $amount;
