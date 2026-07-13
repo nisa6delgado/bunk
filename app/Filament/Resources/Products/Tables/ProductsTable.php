@@ -49,9 +49,19 @@ class ProductsTable
                     ->sortable(),
 
                 TextColumn::make('selling_price')
-                    ->label('Precio')
+                    ->label('Precio (Dólares)')
                     ->formatStateUsing(function ($state) {
                         return number_format($state, 2);
+                    }),
+
+                TextColumn::make('selling_price_ves')
+                    ->label('Precio (Bolívares)')
+                    ->state(function ($record) {
+                        if (rate()) {
+                            return number_format($record->selling_price * rate(), 2);
+                        }
+
+                        return '-';
                     })
                     ->sortable(),
 

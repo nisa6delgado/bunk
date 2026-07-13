@@ -29,13 +29,13 @@ class ProductForm
                     ->required(),
 
                 TextInput::make('purchase_price')
-                    ->label('Precio de compra')
+                    ->label('Precio de compra (Dólares)')
                     ->numeric()
                     ->minValue(0.01)
                     ->required(),
 
                 TextInput::make('selling_price')
-                    ->label('Precio de venta')
+                    ->label('Precio de venta (Dólares)')
                     ->numeric()
                     ->minValue(0.01)
                     ->required(),
