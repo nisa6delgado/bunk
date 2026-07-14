@@ -22,9 +22,19 @@ class InvoicesTable
                     ->label('ID'),
 
                 TextColumn::make('amount')
-                    ->label('Monto')
+                    ->label('Monto (Dólares)')
                     ->formatStateUsing(function ($state) {
                         return number_format($state, 2);
+                    }),
+
+                TextColumn::make('amount_ves')
+                    ->label('Monto (Bolívares)')
+                    ->state(function ($record) {
+                        if (rate()) {
+                            return number_format($record->amount * rate(), 2);
+                        }
+
+                        return '-';
                     }),
 
                 TextColumn::make('paid')

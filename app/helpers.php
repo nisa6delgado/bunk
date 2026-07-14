@@ -2,9 +2,11 @@
 
 use App\Models\Rate;
 
-function rate()
+function rate($date = null)
 {
-    $rate = Rate::whereDate('created_at', now()->format('Y-m-d'))->first();
+    $date = $date ?? now()->format('Y-m-d');
+    
+    $rate = Rate::whereDate('created_at', $date)->first();
 
     if ($rate) {
         return $rate->value;

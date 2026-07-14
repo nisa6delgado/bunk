@@ -27,10 +27,14 @@ class MoneyWidget extends StatsOverviewWidget
         $merchandise = '$' . number_format($merchandise, 2);
         $debtors = '$' . number_format($debtors, 2);
 
+        $rate = 'Bs. ' . number_format(rate(), 2);
+
         return [
             Stat::make('Dinero en mercancía', $merchandise),
 
             Stat::make('Dinero que me deben', $debtors),
+
+            Stat::make('Tasa', $rate)->visible(rate() ? true : false),
         ];
     }
 }

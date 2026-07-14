@@ -57,9 +57,23 @@ class Debtors extends Page implements HasTable
                     ->sortable(),
 
                 TextColumn::make('amount')
-                    ->label('Monto')
+                    ->label('Monto (Dólares)')
                     ->formatStateUsing(function ($state, $record) {
                         return number_format($state - $record->paid, 2);
+                    })
+                    ->sortable(),
+
+                TextColumn::make('amount_ves')
+                    ->label('Monto (Bolívares)')
+                    ->state(function ($record) {
+                        if (rate()) {
+                            $amount = $record->amount - $record->paid;
+                            $amount = $amount * rate();
+                            $amount = number_format($amount, 2);
+                            return $amount;
+                        }
+
+                        return '-';
                     })
                     ->sortable(),
                 
