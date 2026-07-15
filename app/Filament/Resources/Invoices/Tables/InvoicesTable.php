@@ -30,6 +30,10 @@ class InvoicesTable
                 TextColumn::make('amount_ves')
                     ->label('Monto (Bolívares)')
                     ->state(function ($record) {
+                        if ($record->paid == $record->amount && rate($record->created_at->format('Y-m-d'))) {
+                            return number_format($record->amount * rate($record->created_at->format('Y-m-d')), 2);
+                        }
+
                         if (rate()) {
                             return number_format($record->amount * rate(), 2);
                         }

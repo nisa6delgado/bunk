@@ -22,8 +22,10 @@
             <th style="text-align: left">#</th>
             <th style="text-align: left">Producto</th>
             <th style="text-align: left">Cantidad</th>
-            <th style="text-align: left">Precio</th>
-            <th style="text-align: left">Total</th>
+            <th style="text-align: left">Precio (Dólares)</th>
+            <th style="text-align: left">Precio (Bolívares)</th>
+            <th style="text-align: left">Total (Dólares)</th>
+            <th style="text-align: left">Total (Bolívares)</th>
         </tr>
     </thead>
 
@@ -40,28 +42,49 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $item['quantity'] }}</td>
                 <td>{{ number_format($item['price'], 2) }}</td>
+
+                <td>
+                    @if ($invoice->paid == $item['price'] && rate($invoice->created_at->format('Y-m-d')))
+                        {{ number_format($item['price'] * rate($invoice->created_at->format('Y-m-d')), 2) }}
+                    @elseif(rate())
+                        {{ number_format($item['price'] * rate(), 2) }}
+                    @else
+                        -
+                    @endif
+                </td>
+
                 <td>{{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+
+                <td>
+                    @if ($invoice->paid == $item['price'] && rate($invoice->created_at->format('Y-m-d')))
+                        {{ number_format(($item['price'] * $item['quantity']) * rate($invoice->created_at->format('Y-m-d')), 2) }}
+                    @elseif(rate())
+                        {{ number_format(($item['price'] * $item['quantity']) * rate(), 2) }}
+                    @else
+                        -
+                    @endif
+                </td>
             </tr>
         @endforeach
     </tbody>
 
     <tfoot>
         <tr>
-            <th colspan="3"></th>
-            <th style="text-align: right">Total</th>
+            <th colspan="5"></th>
+            <th style="text-align: right">Total (Dólares)</th>
             <th style="text-align: left">{{ number_format($invoice->amount ?? 0, 2) }}</th>
         </tr>
 
         <tr>
-            <th colspan="3"></th>
-            <th style="text-align: right">Pagado</th>
+            <th colspan="5"></th>
+            <th style="text-align: right">Pagado (Dólares)</th>
             <th style="text-align: left">{{ number_format($invoice->paid ?? 0, 2) }}</th>
         </tr>
 
         @if($invoice->paid != $invoice->amount)
             <tr>
-                <th colspan="3"></th>
-                <th style="text-align: right">Restante</th>
+                <th colspan="5"></th>
+                <th style="text-align: right">Restante (Dólares)</th>
                 <th style="text-align: left">{{ number_format($invoice->amount - $invoice->paid, 2) }}</th>
             </tr>
         @endif

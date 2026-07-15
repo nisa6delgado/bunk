@@ -96,7 +96,7 @@ class Debtors extends Page implements HasTable
                     ->modalButton('Pagar')
                     ->schema([
                         TextInput::make('amount')
-                            ->label('Monto')
+                            ->label('Monto (Dólares)')
                             ->numeric()
                             ->default(function ($record) {
                                 return $record->amount - $record->paid;
