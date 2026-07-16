@@ -15,6 +15,15 @@ class UploadDatabase extends Command
      */
     public function handle()
     {
-        //
+        $file = database_path() . '/database.sqlite';
+        $fp = fopen($file, 'r');
+
+        if (env('FTP_SERVER')) {
+            $ftp = ftp_connect(env('FTP_SERVER'));
+        }
+
+        if (env('FTP_USER') && env('FTP_PASSWORD')) {
+            $login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
+        }
     }
 }
