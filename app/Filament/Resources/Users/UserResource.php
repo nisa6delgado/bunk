@@ -18,6 +18,11 @@ class UserResource extends Resource
 
     protected static bool $shouldRegisterNavigation = false;
 
+    public static function getModelLabel(): string
+    {
+        return 'Usuario';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);
