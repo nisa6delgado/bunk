@@ -24,17 +24,33 @@ class MoneyWidget extends StatsOverviewWidget
             }
         }
 
+        $merchandiseDollars = '';
+        $debtorsDollars = '';
+
+        if (rate()) {
+            $merchandiseDollars = $merchandise * rate();
+            $merchandiseDollars = number_format($merchandiseDollars, 2);
+            $merchandiseDollars = 'Bs. ' . $merchandiseDollars;
+
+            $debtorsDollars = $debtors * rate();
+            $debtorsDollars = number_format($debtorsDollars, 2);
+            $debtorsDollars = 'Bs. ' . $debtorsDollars;
+        }
+
         $merchandise = '$' . number_format($merchandise, 2);
         $debtors = '$' . number_format($debtors, 2);
 
         $rate = 'Bs. ' . number_format(rate(), 2);
 
         return [
-            Stat::make('Dinero en mercancía', $merchandise),
+            Stat::make('Dinero en mercancía', $merchandise)
+                ->description($merchandiseDollars),
 
-            Stat::make('Dinero que me deben', $debtors),
+            Stat::make('Dinero que me deben', $debtors)
+                ->description($debtorsDollars),
 
-            Stat::make('Tasa', $rate)->visible(rate() ? true : false),
+            Stat::make('Tasa', $rate)
+                ->visible(rate() ? true : false),
         ];
     }
 }

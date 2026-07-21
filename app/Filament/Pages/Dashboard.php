@@ -29,7 +29,7 @@ class Dashboard extends BaseDashboard
                         'value' => $data['rate'],
                     ]);
 
-                    return redirect('/products');
+                    return redirect('/');
                 }),
         ];
     }

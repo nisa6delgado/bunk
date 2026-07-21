@@ -39,14 +39,37 @@ class SalesWidget extends StatsOverviewWidget
             }
         }
 
+        $weekDollars = '';
+        $biweekDollars = '';
+        $monthDollars = '';
+
+        if (rate()) {
+            $weekDollars = $week * rate();
+            $weekDollars = number_format($weekDollars, 2);
+            $weekDollars = 'Bs. ' . $weekDollars;
+
+            $biweekDollars = $biweek * rate();
+            $biweekDollars = number_format($biweekDollars, 2);
+            $biweekDollars = 'Bs. ' . $biweekDollars;
+
+            $monthDollars = $month * rate();
+            $monthDollars = number_format($monthDollars, 2);
+            $monthDollars = 'Bs. ' . $monthDollars;
+        }
+
         $week = '$' . number_format($week, 2);
         $biweek = '$' . number_format($biweek, 2);
         $month = '$' . number_format($month, 2);
 
         return [
-            Stat::make('Dinero en ventas esta semana', $week),
-            Stat::make('Dinero en ventas los últimos 15 días', $biweek),
-            Stat::make('Dinero en ventas este mes', $month),
+            Stat::make('Dinero en ventas esta semana', $week)
+                ->description($weekDollars),
+
+            Stat::make('Dinero en ventas los últimos 15 días', $biweek)
+                ->description($biweekDollars),
+
+            Stat::make('Dinero en ventas este mes', $month)
+                ->description($monthDollars),
         ];
     }
 }
