@@ -52,6 +52,11 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Usuarios')
                     ->url('/users')
                     ->icon('heroicon-o-user-group'),
+
+                MenuItem::make()
+                    ->label('Configuración')
+                    ->url('/setting')
+                    ->icon('heroicon-o-cog-8-tooth'),
             ])
             ->middleware([
                 EncryptCookies::class,

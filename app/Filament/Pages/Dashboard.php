@@ -17,7 +17,7 @@ class Dashboard extends BaseDashboard
                 ->label('Establecer tasa')
                 ->icon('heroicon-o-currency-dollar')
                 ->modalWidth(Width::Medium)
-                ->modalSubmitActionLabel('Filtrar')
+                ->modalSubmitActionLabel('Establecer')
                 ->form([
                     TextInput::make('rate')
                         ->label('Tasa')
