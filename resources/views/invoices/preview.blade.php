@@ -22,7 +22,7 @@
             <th style="text-align: left">#</th>
             <th style="text-align: left">Producto</th>
             <th style="text-align: left">Cantidad</th>
-            <th style="text-align: left">Precio</th>
+            <th style="text-align: left">Precio (Dólares)</th>
             <th style="text-align: left">Total</th>
             <th></th>
         </tr>
