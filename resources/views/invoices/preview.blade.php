@@ -23,6 +23,7 @@
             <th style="text-align: left">Producto</th>
             <th style="text-align: left">Cantidad</th>
             <th style="text-align: left">Precio (Dólares)</th>
+            <th style="text-align: left">Precio (Bolívares)</th>
             <th style="text-align: left">Total</th>
             <th></th>
         </tr>
@@ -41,6 +42,11 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $item['quantity'] }}</td>
                 <td>{{ number_format($product->selling_price, 2) }}</td>
+
+                @if(rate())
+                    <td>{{ number_format($product->selling_price * rate(), 2) }}</td>
+                @endif
+
                 <td>{{ number_format($product->selling_price * $item['quantity'], 2) }}</td>
                 <td style="text-align: right">
                     <button
