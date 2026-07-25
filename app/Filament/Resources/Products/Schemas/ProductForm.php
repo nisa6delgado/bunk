@@ -34,11 +34,21 @@ class ProductForm
                     ->minValue(0.01)
                     ->required(),
 
+                TextInput::make('purchase_price_ves')
+                    ->label('Precio de compra (Bolívares)')
+                    ->numeric()
+                    ->minValue(0.01),
+
                 TextInput::make('selling_price')
                     ->label('Precio de venta (Dólares)')
                     ->numeric()
                     ->minValue(0.01)
                     ->required(),
+
+                TextInput::make('selling_price')
+                    ->label('Precio de venta (Bolívares)')
+                    ->numeric()
+                    ->minValue(0.01),
 
                 TextInput::make('quantity')
                     ->label('Cantidad')

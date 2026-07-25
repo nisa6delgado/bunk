@@ -24,7 +24,7 @@
             <th style="text-align: left">Cantidad</th>
             <th style="text-align: left">Precio (Dólares)</th>
             <th style="text-align: left">Precio (Bolívares)</th>
-            <th style="text-align: left">Total</th>
+            <th style="text-align: left">Total (Dólares)</th>
             <th></th>
         </tr>
     </thead>

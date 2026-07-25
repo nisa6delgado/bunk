@@ -6,8 +6,8 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
 
 class Setting extends Page implements HasForms
@@ -18,14 +18,16 @@ class Setting extends Page implements HasForms
 
     protected static bool $shouldRegisterNavigation = false;
 
+    public ?array $data = [];
+
     public function getTitle(): string|Htmlable
     {
         return 'Configuración';
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
             TextInput::make('name')
                 ->label('Nombre')
                 ->required()
