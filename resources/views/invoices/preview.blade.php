@@ -23,7 +23,11 @@
             <th style="text-align: left">Producto</th>
             <th style="text-align: left">Cantidad</th>
             <th style="text-align: left">Precio (Dólares)</th>
-            <th style="text-align: left">Precio (Bolívares)</th>
+
+            @if(rate())
+                <th style="text-align: left">Precio (Bolívares)</th>
+            @endif
+
             <th style="text-align: left">Total (Dólares)</th>
             <th></th>
         </tr>
@@ -48,6 +52,7 @@
                 @endif
 
                 <td>{{ number_format($product->selling_price * $item['quantity'], 2) }}</td>
+
                 <td style="text-align: right">
                     <button
                         wire:click="delete({{ $loop->index }})"

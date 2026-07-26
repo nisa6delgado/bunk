@@ -2,8 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Setting as Model;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
@@ -27,11 +30,18 @@ class Setting extends Page implements HasForms
 
     public function form(Schema $schema): Schema
     {
+        $logo = Model::where('key', 'logo')->first();
+
         return $schema->schema([
             TextInput::make('name')
                 ->label('Nombre')
                 ->required()
                 ->autofocus(),
+
+            ViewField::make('logo-preview')
+                ->view('settings.logo', compact('logo')),
+
+            FileUpload::make('logo'),
         ])->statePath('data');
     }
 

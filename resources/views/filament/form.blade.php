@@ -2,7 +2,7 @@
     <form wire:submit="submit">
         {{ $this->form }}
 
-        <div class="mt-2">
+        <div style="margin-top: 20px">
             <x-filament::actions  :actions="$this->getFormActions()"/>
         </div>
     </form>
