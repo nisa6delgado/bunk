@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
@@ -58,5 +59,24 @@ class Setting extends Page implements HasForms
     public function submit()
     {
         $data = collect($this->form->getState());
+        
+        Model::updateOrCreate([
+            'key' => 'name',
+            'value' => $data['name'],
+        ]);
+
+        if ($data['logo']) {
+            Model::updateOrCreate([
+                'key' => 'logo',
+                'value' => $data['logo'],
+            ]);
+        }
+
+        return Notification::make()
+            ->title('Configuración actualizada')
+            ->success()
+            ->send();
+
+        return redirect('/setting');
     }
 }

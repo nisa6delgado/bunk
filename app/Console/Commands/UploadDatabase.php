@@ -19,11 +19,11 @@ class UploadDatabase extends Command
         $fp = fopen($file, 'r');
 
         if (env('FTP_SERVER')) {
-            $ftp = ftp_connect(env('FTP_SERVER'));
+            $ftp_connect = ftp_connect(env('FTP_SERVER'));
         }
 
-        if (env('FTP_USER') && env('FTP_PASSWORD')) {
-            $login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
+        if ($ftp_connect && env('FTP_USER') && env('FTP_PASSWORD')) {
+            $ftp_login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
         }
     }
 }

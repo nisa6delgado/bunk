@@ -29,6 +29,11 @@
             @endif
 
             <th style="text-align: left">Total (Dólares)</th>
+
+            @if(rate())
+                <th style="text-align: left">Total (Bolívares)</th>
+            @endif
+
             <th></th>
         </tr>
     </thead>
@@ -52,6 +57,10 @@
                 @endif
 
                 <td>{{ number_format($product->selling_price * $item['quantity'], 2) }}</td>
+
+                @if(rate())
+                    <td>{{ number_format($product->selling_price * $item['quantity'] * rate(), 2) }}</td>
+                @endif
 
                 <td style="text-align: right">
                     <button
