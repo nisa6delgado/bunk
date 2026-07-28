@@ -18,7 +18,7 @@ class FixInvoiceAmount extends Command
     {
         $invoices = Invoice::get();
 
-        foreach ($invoices as $invoice) {
+        $this->withSpinner($invoices, function ($invoice) {
             $total = 0;
 
             foreach ($invoice->products as $product) {
@@ -30,6 +30,6 @@ class FixInvoiceAmount extends Command
             }
             
             $invoice->update(['amount' => $total]);
-        }
+        }, 'Loading...');
     }
 }

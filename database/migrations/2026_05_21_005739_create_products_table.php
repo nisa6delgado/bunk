@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('name');
-            $table->string('purchase_price');
-            $table->string('purchase_price_ves');
-            $table->string('selling_price');
-            $table->string('selling_price_ves');
+            $table->string('purchase_price')->nullable();
+            $table->string('purchase_price_ves')->nullable();
+            $table->string('selling_price')->nullable();
+            $table->string('selling_price_ves')->nullable();
             $table->string('quantity');
             $table->string('low_stock_alert');
             $table->foreign('category_id')->references('id')->on('categories');

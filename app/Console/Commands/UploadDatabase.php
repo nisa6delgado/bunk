@@ -25,5 +25,9 @@ class UploadDatabase extends Command
         if ($ftp_connect && env('FTP_USER') && env('FTP_PASSWORD')) {
             $ftp_login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
         }
+
+        if ($ftp_login) {
+            ftp_put($ftp_connect, 'database/database.sqlite', $file, FTP_ASCII);
+        }
     }
 }

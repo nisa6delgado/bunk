@@ -100,7 +100,18 @@
 
         <tr>
             <th colspan="4"></th>
-            <th style="text-align: left">{{ number_format($total ?? 0, 2) }}</th>
+            <th style="text-align: left">
+                <div>
+                    $ {{ number_format($total ?? 0, 2) }}
+                </div>
+
+                @if(rate())
+                    <div>
+                        Bs. {{ number_format($total ?? 0 * rate(), 2) }}
+                    </div>
+                @endif
+            </th>
+
             <th style="text-align: right">
                 <button
                     wire:click="save"
