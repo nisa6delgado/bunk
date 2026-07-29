@@ -21,8 +21,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => '123',
         ]);
-
-        Category::create(['name' => 'Repuestos de moto']);
-        Category::create(['name' => 'Ferretería']);
     }
 }

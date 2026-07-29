@@ -29,5 +29,7 @@ class UploadDatabase extends Command
         if ($ftp_login) {
             ftp_put($ftp_connect, 'database/database.sqlite', $file, FTP_ASCII);
         }
+
+        $this->info('Base de datos cargada exitosamente');
     }
 }

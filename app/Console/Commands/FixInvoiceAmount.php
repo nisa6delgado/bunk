@@ -31,5 +31,7 @@ class FixInvoiceAmount extends Command
             
             $invoice->update(['amount' => $total]);
         }, 'Loading...');
+
+        $this->info('Facturas actualizadas exitosamente');
     }
 }

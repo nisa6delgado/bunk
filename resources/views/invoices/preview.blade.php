@@ -77,7 +77,7 @@
 
     <tfoot>
         <tr>
-            <th colspan="5"></th>
+            <th colspan="7"></th>
             <th style="text-align: right">
                 ¿Venta a crédito? <input wire:model.live="credit" type="checkbox">
             </th>
@@ -85,7 +85,7 @@
 
         @if($this->credit)
             <tr>
-                <th colspan="5"></th>
+                <th colspan="7"></th>
                 <th style="text-align: right">
                     <div>
                         Nombre del cliente: <input wire:model="customer" type="text" style="border: 1px solid silver; border-radius: 5px; padding: 5px">
@@ -99,7 +99,7 @@
         @endif
 
         <tr>
-            <th colspan="4"></th>
+            <th colspan="6"></th>
             <th style="text-align: left">
                 <div>
                     $ {{ number_format($total ?? 0, 2) }}
