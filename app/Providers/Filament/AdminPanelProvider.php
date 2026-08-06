@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Widgets\MoneyWidget;
 use App\Filament\Widgets\SalesWidget;
+use App\Models\Setting;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -25,13 +26,21 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $favicon = Setting::where('key', 'favicon')->first();
+        $favicon = $favicon->value;
+        $favicon = '/img/' . $favicon;
+
+        $brand = Setting::where('key', 'brand')->first();
+        $brand = $brand->value;
+        $brand = '/img/' . $brand;
+
         return $panel
             ->default()
             ->id('admin')
             ->path('')
             ->login()
-            ->favicon('/img/favicon.jpeg')
-            ->brandLogo('/img/brand.jpeg')
+            ->favicon($favicon)
+            ->brandLogo($brand)
             ->brandLogoHeight('3rem')
             ->colors([
                 'primary' => Color::Red,

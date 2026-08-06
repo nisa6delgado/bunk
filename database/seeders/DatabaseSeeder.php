@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +19,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@admin.com',
             'password' => '123',
+        ]);
+
+        Setting::create([
+            'key' => 'name',
+            'value' => 'Inventario',
         ]);
     }
 }
