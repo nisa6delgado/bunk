@@ -25,5 +25,10 @@ class DatabaseSeeder extends Seeder
             'key' => 'name',
             'value' => 'Inventario',
         ]);
+
+        Setting::create([
+            'key' => 'favicon',
+            'value' => 'favicon.png',
+        ]);
     }
 }

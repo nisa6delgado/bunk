@@ -24,6 +24,15 @@ class Setting extends Page implements HasForms
 
     public ?array $data = [];
 
+    public function mount(): void
+    {
+        $setting = Model::where('key', 'name')->first();
+
+        $this->form->fill([
+            'name' => $setting->value,
+        ]);
+    }
+
     public function getTitle(): string|Htmlable
     {
         return 'Configuración';

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -18,18 +19,15 @@ class UploadDatabase extends Command
         $file = database_path() . '/database.sqlite';
         $fp = fopen($file, 'r');
 
-        if (env('FTP_SERVER')) {
+        try {
             $ftp_connect = ftp_connect(env('FTP_SERVER'));
-        }
-
-        if ($ftp_connect && env('FTP_USER') && env('FTP_PASSWORD')) {
             $ftp_login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
-        }
-
-        if ($ftp_login) {
             ftp_put($ftp_connect, 'database/database.sqlite', $file, FTP_ASCII);
-        }
 
-        $this->info('Base de datos cargada exitosamente');
+            $this->info('Base de datos cargada exitosamente');
+        }
+        catch (Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

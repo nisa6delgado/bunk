@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +24,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::unguard();
+
+        if (! app()->runningInConsole() && Schema::hasTable('settings')) {
+            $setting = Setting::where('key', 'name')->first();
+
+            if ($setting) {
+                Config::set('app.name', $setting->value);
+            }
+        }
     }
 }
