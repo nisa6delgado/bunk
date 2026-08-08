@@ -34,6 +34,9 @@ class AdminPanelProvider extends PanelProvider
         $brand = $brand->value;
         $brand = '/img/' . $brand;
 
+        $color = Setting::where('key', 'color')->first();
+        $color = $color->value;
+
         return $panel
             ->default()
             ->id('admin')
@@ -43,7 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo($brand)
             ->brandLogoHeight('3rem')
             ->colors([
-                'primary' => Color::Red,
+                'primary' => Color::hex($color),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

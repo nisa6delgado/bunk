@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Setting as Model;
 use Filament\Actions\Action;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
@@ -47,6 +48,10 @@ class Setting extends Page implements HasForms
                 ->label('Nombre')
                 ->required()
                 ->autofocus(),
+
+            ColorPicker::make('color')
+                ->label('Color')
+                ->required(),
 
             ViewField::make('logo-preview')
                 ->view('settings.logo', compact('logo')),
