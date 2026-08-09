@@ -33,6 +33,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Setting::create([
+            'key' => 'brand',
+            'value' => 'brand.png',
+        ]);
+
+        Setting::create([
             'key' => 'favicon',
             'value' => 'favicon.png',
         ]);

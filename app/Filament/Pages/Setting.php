@@ -41,7 +41,7 @@ class Setting extends Page implements HasForms
 
     public function form(Schema $schema): Schema
     {
-        $logo = Model::where('key', 'logo')->first();
+        $favicon = Model::where('key', 'favicon')->first();
 
         return $schema->schema([
             TextInput::make('name')
@@ -53,10 +53,10 @@ class Setting extends Page implements HasForms
                 ->label('Color')
                 ->required(),
 
-            ViewField::make('logo-preview')
-                ->view('settings.logo', compact('logo')),
+            ViewField::make('favicon-preview')
+                ->view('settings.favicon', compact('favicon')),
 
-            FileUpload::make('logo'),
+            FileUpload::make('favicon'),
         ])->statePath('data');
     }
 
