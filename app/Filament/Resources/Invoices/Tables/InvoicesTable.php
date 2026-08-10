@@ -81,12 +81,12 @@ class InvoicesTable
                     ->modalSubmitAction(false)
                     ->modalCancelAction(false),
 
-                DeleteAction::make()
+                DeleteAction::make()->color('primary')
             ])
             ->defaultSort('created_at', 'desc')
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->color('primary'),
                 ]),
             ]);
     }

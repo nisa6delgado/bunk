@@ -34,12 +34,16 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
-                EditAction::make()->button(),
-                DeleteAction::make()->button(),
+                EditAction::make()
+                    ->button(),
+
+                DeleteAction::make()
+                    ->button()
+                    ->color('primary'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->color('primary'),
                 ]),
             ]);
     }

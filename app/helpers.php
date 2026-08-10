@@ -1,6 +1,13 @@
 <?php
 
 use App\Models\Rate;
+use App\Models\Setting;
+
+function color()
+{
+    $setting = Setting::where('key', 'color')->first();
+    return $setting->value;
+}
 
 function rate($date = null)
 {
