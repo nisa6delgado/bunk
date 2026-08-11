@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\Products\Tables;
 
 use App\Models\Category;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
@@ -112,7 +110,7 @@ class ProductsTable
 
                         return redirect('/products');
                     })
-                    ->color('info')
+                    ->color('primary')
                     ->icon('heroicon-o-clipboard-document-check'),
 
                 Action::make('quantity')
@@ -136,7 +134,7 @@ class ProductsTable
                             ->send();
                     })
                     ->button()
-                    ->color('success')
+                    ->color('primary')
                     ->icon('heroicon-o-adjustments-horizontal'),
 
                 ActionGroup::make([
@@ -151,9 +149,7 @@ class ProductsTable
                 ]),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                
             ]);
     }
 }

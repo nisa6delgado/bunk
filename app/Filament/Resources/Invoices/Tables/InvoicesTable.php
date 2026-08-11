@@ -74,6 +74,7 @@ class InvoicesTable
                 Action::make('view')
                     ->label('Ver factura')
                     ->icon('heroicon-o-eye')
+                    ->button()
                     ->modalContent(function ($record) {
                         $invoice = $record;
                         return view('invoices.view', compact('invoice'));
@@ -81,7 +82,9 @@ class InvoicesTable
                     ->modalSubmitAction(false)
                     ->modalCancelAction(false),
 
-                DeleteAction::make()->color('primary')
+                DeleteAction::make()
+                    ->color('primary')
+                    ->button()
             ])
             ->defaultSort('created_at', 'desc')
             ->toolbarActions([

@@ -67,7 +67,7 @@
                         wire:click="delete({{ $loop->index }})"
                         wire:confirm="¿Estás seguro que deseas eliminar?"
                         type="button"
-                        style="background-color: red; color: white; border-radius: 5px; padding: 5px">
+                        style="background-color: {{ color() }}; color: white; border-radius: 5px; padding: 5px">
                         Eliminar
                     </button>
                 </td>
@@ -88,11 +88,19 @@
                 <th colspan="7"></th>
                 <th style="text-align: right">
                     <div>
-                        Nombre del cliente: <input wire:model="customer" type="text" style="border: 1px solid silver; border-radius: 5px; padding: 5px">
+                        <div>
+                            Nombre del cliente:
+                        </div>
+
+                        <input wire:model="customer" type="text" style="border: 1px solid silver; border-radius: 5px; padding: 5px">
                     </div>
 
                     <div style="margin-top: 10px">
-                        Abono: <input wire:model="paid" type="text" style="border: 1px solid silver; border-radius: 5px; padding: 5px">
+                        <div>
+                            Abono:
+                        </div>
+                        
+                        <input wire:model="paid" type="text" style="border: 1px solid silver; border-radius: 5px; padding: 5px">
                     </div>
                 </th>
             </tr>
@@ -117,7 +125,7 @@
                     wire:click="save"
                     wire:confirm="¿Estás seguro que deseas finalizar?"
                     type="button"
-                    style="background-color: red; color: white; border-radius: 5px; padding: 5px">
+                    style="background-color: {{ color() }}; color: white; border-radius: 5px; padding: 5px">
                     Finalizar factura
                 </button>
             </th>

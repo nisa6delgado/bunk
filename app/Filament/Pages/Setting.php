@@ -53,8 +53,8 @@ class Setting extends Page implements HasForms
                 ->label('Color')
                 ->required(),
 
-            ViewField::make('favicon-preview')
-                ->view('settings.favicon', compact('favicon')),
+            ViewField::make('images')
+                ->view('settings.images', compact('favicon')),
 
             FileUpload::make('favicon'),
         ])->statePath('data');
