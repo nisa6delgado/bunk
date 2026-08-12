@@ -14,7 +14,8 @@ class EditUser extends EditRecord
     {
         return [
             DeleteAction::make()
-                ->icon('heroicon-o-trash'),
+                ->icon('heroicon-o-trash')
+                ->color('primary'),
         ];
     }
 }

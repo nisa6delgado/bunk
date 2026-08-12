@@ -41,6 +41,7 @@ class UsersTable
                     ->button(),
 
                 DeleteAction::make()
+                    ->color('primary')
                     ->button(),
             ])
             ->toolbarActions([

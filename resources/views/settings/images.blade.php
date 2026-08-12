@@ -1,3 +1,3 @@
 @if($favicon)
-    <img src="/img/{{ $favicon->value }}">
+    <img src="/img/{{ $favicon }}">
 @endif

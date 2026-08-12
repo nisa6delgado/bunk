@@ -42,6 +42,7 @@ class Setting extends Page implements HasForms
     public function form(Schema $schema): Schema
     {
         $favicon = Model::where('key', 'favicon')->first();
+        $favicon = $favicon->value;
 
         return $schema->schema([
             TextInput::make('name')
