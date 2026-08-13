@@ -44,6 +44,9 @@ class Setting extends Page implements HasForms
         $favicon = Model::where('key', 'favicon')->first();
         $favicon = $favicon->value;
 
+        $brand = Model::where('key', 'brand')->first();
+        $brand = $brand->value;
+
         return $schema->schema([
             TextInput::make('name')
                 ->label('Nombre')
@@ -55,7 +58,7 @@ class Setting extends Page implements HasForms
                 ->required(),
 
             ViewField::make('images')
-                ->view('settings.images', compact('favicon')),
+                ->view('settings.images', compact('favicon', 'brand')),
 
             FileUpload::make('favicon'),
         ])->statePath('data');

@@ -79,6 +79,16 @@ class ProductsTable
                 Action::make('invoice')
                     ->label('Agregar a factura')
                     ->button()
+                    ->modalSubmitAction(
+                        fn (Action $action) => $action
+                            ->label('Agregar')
+                            ->icon('heroicon-o-check-circle')
+                    )
+                    ->modalCancelAction(
+                        fn (Action $action) => $action
+                            ->label('Cancelar')
+                            ->icon('heroicon-o-x-circle')
+                    )
                     ->modalWidth('xs')
                     ->schema([
                         TextInput::make('quantity')

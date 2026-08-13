@@ -94,6 +94,16 @@ class Debtors extends Page implements HasTable
                     ->modalWidth('xs')
                     ->icon('heroicon-o-banknotes')
                     ->modalButton('Pagar')
+                    ->modalSubmitAction(
+                            fn (Action $action) => $action
+                                ->label('Pagar')
+                                ->icon('heroicon-o-check-circle')
+                        )
+                        ->modalCancelAction(
+                            fn (Action $action) => $action
+                                ->label('Cancelar')
+                                ->icon('heroicon-o-x-circle')
+                        )
                     ->schema([
                         TextInput::make('amount')
                             ->label('Monto (Dólares)')
