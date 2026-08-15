@@ -27,10 +27,15 @@ class Setting extends Page implements HasForms
 
     public function mount(): void
     {
-        $setting = Model::where('key', 'name')->first();
+        $name = Model::where('key', 'name')->first();
+        $name = $name->value;
+
+        $color = Model::where('key', 'color')->first();
+        $color = $color->value;
 
         $this->form->fill([
-            'name' => $setting->value,
+            'name' => $name,
+            'color' => $color,
         ]);
     }
 

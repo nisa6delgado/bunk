@@ -17,12 +17,13 @@ class UploadDatabase extends Command
     public function handle()
     {
         $file = database_path() . '/database.sqlite';
-        $fp = fopen($file, 'r');
+        $ftp = fopen($file, 'r');
 
         try {
             $ftp_connect = ftp_connect(env('FTP_SERVER'));
-            $ftp_login = ftp_login($ftp, env('FTP_USER'), env('FTP_PASSWORD'));
+            $ftp_login = ftp_login($ftp_connect, env('FTP_USER'), env('FTP_PASSWORD'));
             ftp_put($ftp_connect, 'database/database.sqlite', $file, FTP_ASCII);
+            ftp_close($ftp_connect);
 
             $this->info('Base de datos cargada exitosamente');
         }
