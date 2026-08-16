@@ -126,6 +126,16 @@ class ProductsTable
                 Action::make('quantity')
                     ->label('Agregar Cantidad')
                     ->modalWidth('xs')
+                    ->modalSubmitAction(
+                        fn (Action $action) => $action
+                            ->label('Agregar')
+                            ->icon('heroicon-o-check-circle')
+                    )
+                    ->modalCancelAction(
+                        fn (Action $action) => $action
+                            ->label('Cancelar')
+                            ->icon('heroicon-o-x-circle')
+                    )
                     ->schema([
                         TextInput::make('quantity')
                             ->label('Cantidad')

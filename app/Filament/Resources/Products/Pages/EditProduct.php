@@ -15,7 +15,8 @@ class EditProduct extends EditRecord
     {
         return [
             DeleteAction::make()
-                ->color('primary'),
+                ->color('primary')
+                ->icon('heroicon-o-trash'),
         ];
     }
 

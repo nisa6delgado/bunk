@@ -78,6 +78,7 @@
         <tr>
             <th colspan="5"></th>
             <th style="text-align: right">Total (Bolívares)</th>
+
             <th style="text-align: left">
                 @if ($invoice->paid == $total && rate($invoice->created_at->format('Y-m-d')))
                     {{ number_format($total * rate($invoice->created_at->format('Y-m-d')), 2) }}
@@ -98,6 +99,7 @@
         <tr>
             <th colspan="5"></th>
             <th style="text-align: right">Pagado (Bolívares)</th>
+            
             <th style="text-align: left">
                 @if ($invoice->paid == $total && rate($invoice->created_at->format('Y-m-d')))
                     {{ number_format($invoice->paid * rate($invoice->created_at->format('Y-m-d')), 2) }}

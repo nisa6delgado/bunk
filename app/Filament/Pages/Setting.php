@@ -12,6 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -53,14 +54,18 @@ class Setting extends Page implements HasForms
         $brand = $brand->value;
 
         return $schema->schema([
-            TextInput::make('name')
-                ->label('Nombre')
-                ->required()
-                ->autofocus(),
+            Grid::make()
+                ->columns(2)
+                ->schema([
+                    TextInput::make('name')
+                        ->label('Nombre')
+                        ->required()
+                        ->autofocus(),
 
-            ColorPicker::make('color')
-                ->label('Color')
-                ->required(),
+                    ColorPicker::make('color')
+                        ->label('Color')
+                        ->required(),
+                ]),
 
             ViewField::make('images')
                 ->view('settings.images', compact('favicon', 'brand')),
