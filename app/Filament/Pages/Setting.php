@@ -67,8 +67,15 @@ class Setting extends Page implements HasForms
                         ->required(),
                 ]),
 
-            ViewField::make('images')
-                ->view('settings.images', compact('favicon', 'brand')),
+            Grid::make()
+                ->columns(2)
+                ->schema([
+                    ViewField::make('favicon-preview')
+                        ->view('settings.image', ['image' => $favicon]),
+
+                    ViewField::make('brand-preview')
+                        ->view('settings.image', ['image' => $brand]),
+                ]),
 
             FileUpload::make('favicon'),
 
