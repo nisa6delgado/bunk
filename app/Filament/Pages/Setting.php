@@ -77,9 +77,13 @@ class Setting extends Page implements HasForms
                         ->view('settings.image', ['image' => $brand]),
                 ]),
 
-            FileUpload::make('favicon'),
-
-            FileUpload::make('brand'),
+            Grid::make()
+                ->columns(2)
+                ->schema([
+                    FileUpload::make('favicon'),
+                    FileUpload::make('brand')
+                        ->label('Imagen superior'),
+                ]),
         ])->statePath('data');
     }
 
