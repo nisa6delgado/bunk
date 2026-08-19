@@ -113,7 +113,7 @@ class Setting extends Page implements HasForms
             ]);
         }
 
-        return Notification::make()
+        Notification::make()
             ->title('Configuración actualizada')
             ->success()
             ->send();
