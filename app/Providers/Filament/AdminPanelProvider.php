@@ -20,22 +20,29 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $favicon = Setting::where('key', 'favicon')->first();
-        $favicon = $favicon->value;
-        $favicon = '/img/' . $favicon;
+        $favicon = '';
+        $brand = '';
+        $color = '';
 
-        $brand = Setting::where('key', 'brand')->first();
-        $brand = $brand->value;
-        $brand = '/img/' . $brand;
+        if (! app()->runningInConsole() && Schema::hasTable('settings')) {
+            $favicon = Setting::where('key', 'favicon')->first();
+            $favicon = $favicon->value;
+            $favicon = '/img/' . $favicon;
 
-        $color = Setting::where('key', 'color')->first();
-        $color = $color->value;
+            $brand = Setting::where('key', 'brand')->first();
+            $brand = $brand->value;
+            $brand = '/img/' . $brand;
+
+            $color = Setting::where('key', 'color')->first();
+            $color = $color->value;
+        }
 
         return $panel
             ->default()

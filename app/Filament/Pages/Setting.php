@@ -81,6 +81,7 @@ class Setting extends Page implements HasForms
                 ->columns(2)
                 ->schema([
                     FileUpload::make('favicon'),
+
                     FileUpload::make('brand')
                         ->label('Imagen superior'),
                 ]),
@@ -101,17 +102,11 @@ class Setting extends Page implements HasForms
     {
         $data = collect($this->form->getState());
         
-        Model::updateOrCreate([
-            'key' => 'name',
-            'value' => $data['name'],
-        ]);
+        Model::where('key', 'name')
+            ->update(['name' => $data['name']]);
 
-        if ($data['logo']) {
-            Model::updateOrCreate([
-                'key' => 'logo',
-                'value' => $data['logo'],
-            ]);
-        }
+        Model::where('key', 'color')
+            ->update(['color' => $data['color']]);
 
         Notification::make()
             ->title('Configuración actualizada')
