@@ -21,6 +21,7 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -34,11 +35,21 @@ class AdminPanelProvider extends PanelProvider
         if (! app()->runningInConsole() && Schema::hasTable('settings')) {
             $favicon = Setting::where('key', 'favicon')->first();
             $favicon = $favicon->value;
-            $favicon = '/img/' . $favicon;
+
+            if (Storage::exists($favicon)) {
+                $favicon = asset('storage/' . $favicon);
+            } else {
+                $favicon = '/img/' . $favicon;
+            }
 
             $brand = Setting::where('key', 'brand')->first();
             $brand = $brand->value;
-            $brand = '/img/' . $brand;
+            
+            if (Storage::exists($brand)) {
+                $brand = asset('storage/' . $brand);
+            } else {
+                $brand = '/img/' . $brand;
+            }
 
             $color = Setting::where('key', 'color')->first();
             $color = $color->value;

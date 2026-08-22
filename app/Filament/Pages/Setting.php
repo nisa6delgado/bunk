@@ -103,10 +103,20 @@ class Setting extends Page implements HasForms
         $data = collect($this->form->getState());
         
         Model::where('key', 'name')
-            ->update(['name' => $data['name']]);
+            ->update(['value' => $data['name']]);
 
         Model::where('key', 'color')
-            ->update(['color' => $data['color']]);
+            ->update(['value' => $data['color']]);
+
+        if (isset($data['favicon'])) {
+            Model::where('key', 'favicon')
+                ->update(['value' => $data['favicon']]);
+        }
+
+        if (isset($data['brand'])) {
+            Model::where('key', 'brand')
+                ->update(['value' => $data['brand']]);
+        }
 
         Notification::make()
             ->title('Configuración actualizada')
