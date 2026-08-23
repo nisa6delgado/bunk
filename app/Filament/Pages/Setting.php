@@ -15,6 +15,7 @@ use Filament\Pages\Page;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\Storage;
 
 class Setting extends Page implements HasForms
 {
@@ -50,8 +51,14 @@ class Setting extends Page implements HasForms
         $favicon = Model::where('key', 'favicon')->first();
         $favicon = $favicon->value;
 
+        if (Storage::exists($favicon)) {
+            $favicon = asset('storage/' . $favicon);
+        } else {
+            $favicon = '/img/' . $favicon;
+        }
+
         $brand = Model::where('key', 'brand')->first();
-        $brand = $brand->value;
+        $brand = '/img/' . $brand->value;
 
         return $schema->schema([
             Grid::make()

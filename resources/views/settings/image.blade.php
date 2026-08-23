@@ -1,3 +1,3 @@
 <div>
-    <img src="/img/{{ $image }}">
+    <img src="{{ $image }}">
 </div>
