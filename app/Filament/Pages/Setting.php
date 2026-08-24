@@ -58,7 +58,13 @@ class Setting extends Page implements HasForms
         }
 
         $brand = Model::where('key', 'brand')->first();
-        $brand = '/img/' . $brand->value;
+        $brand = $brand->value;
+
+        if (Storage::exists($brand)) {
+            $brand = asset('storage/' . $brand);
+        } else {
+            $brand = '/img/' . $brand;
+        }
 
         return $schema->schema([
             Grid::make()
